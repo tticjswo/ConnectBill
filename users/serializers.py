@@ -36,10 +36,11 @@ class DesignerRegisterSerializer(serializers.ModelSerializer):
     """
     A user serializer for registering the Designer
     """
+    average_stars = None
     password2 = serializers.CharField(style={"input_type":"password"}, write_only = True)
     class Meta:
         model = Designer
-        fields = ('id','email', 'username', 'password','password2','phone','skills','description')
+        fields = ('id','email', 'username', 'password','password2','phone','skills','description','average_stars')
 
     def validate_username(self, value):
         user = User.objects.filter(username=value)
