@@ -27,7 +27,7 @@ import os
 import shutil
 from reborn import settings
 
-MEDIA_ROOT = settings.MEDIA_ROOT
+MEDIA_ROOT = settings.STATIC_URL
 
 datetime_format = "%Y-%m-%d"
 User = get_user_model()

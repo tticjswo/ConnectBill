@@ -30,7 +30,7 @@ import shutil
 from reborn import settings
 from portfolio.models import Projects
 
-MEDIA_ROOT = settings.MEDIA_ROOT
+MEDIA_ROOT = settings.STATIC_URL
 #from .serializer import BriefReviewSerializer
 
 

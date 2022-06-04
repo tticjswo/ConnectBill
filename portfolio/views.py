@@ -24,7 +24,7 @@ from django.core.files.base import ContentFile
 import numpy as np
 from reborn import settings
 
-MEDIA_ROOT = settings.MEDIA_ROOT
+MEDIA_ROOT = settings.STATIC_URL
 
 
 @api_view(['GET'])
