@@ -15,17 +15,17 @@ def get_and_authenticate_user(username, password):
     return user
 
 
-def create_designer_account(username , email, password,password2 ,skills , phone):
+def create_designer_account(username , email, password,password2 ,skills , phone,description):
     if password != password2 :
         raise serializers.ValidationError("password does not match")
     user = Designer.objects.create_user(
-        username = username ,email=email,profile_image= default_profile_image, password=password,  skills = skills, phone = phone)
+        username = username ,email=email,profile_image= default_profile_image, password=password,  skills = skills, phone = phone, description=description)
     return user
 
-def create_client_account(username , email, password,password2, company_name , phone):
+def create_client_account(username , email, password,password2, company_name , phone,description):
     if password != password2 :
         raise serializers.ValidationError("password does not match")
     print('hello to check')
     user = Client.objects.create_user(
-        username = username ,email=email, profile_image= default_profile_image,password=password, phone = phone , company_name = company_name)
+        username = username ,email=email, profile_image= default_profile_image,password=password, phone = phone , company_name = company_name, description=description)
     return user
