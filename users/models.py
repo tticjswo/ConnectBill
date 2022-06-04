@@ -32,7 +32,7 @@ class Designer(User) :
     phone = models.CharField(max_length=100, blank=True)
     skills = models.CharField(max_length=100,blank=True)
     description = models.TextField(null=True, blank=True)
-    average_stars = models.FloatField(default=None)
+    average_stars = models.FloatField(default=None,null =True)
 
     USERNAME_FIELD: User.username
 
