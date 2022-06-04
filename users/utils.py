@@ -22,6 +22,7 @@ def create_designer_account(username , email, password,password2 ,skills , phone
 def create_client_account(username , email, password,password2, company_name , phone,**extra_fields):
     if password != password2 :
         raise serializers.ValidationError("password does not match")
+    print('hello to check')
     user = Client.objects.create_user(
         username = username ,email=email, profile_image= default_profile_image,password=password, phone = phone , company_name = company_name,  **extra_fields)
     return user
