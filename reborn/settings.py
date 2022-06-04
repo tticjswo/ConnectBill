@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from datetime import timedelta
 from pathlib import Path
 import os
+from tkinter.messagebox import YES
 import dj_database_url
 import environ
 
@@ -26,10 +27,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-c9nlv4wnbum#)3r#1_42xy@fye%fw!j6erk#9eqn*v53y80&g#')
+SECRET_KEY = 'django-insecure-c9nlv4wnbum#)3r#1_42xy@fye%fw!j6erk#9eqn*v53y80&g#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(os.environ.get('DJANGO_DEBUG', False))
+DEBUG = YES
 
 
 # # SECURITY WARNING: keep the secret key used in production secret!
@@ -38,7 +39,7 @@ DEBUG = bool(os.environ.get('DJANGO_DEBUG', False))
 # # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 
-ALLOWED_HOSTS = ['connectbill.herokuapp.com']
+# ALLOWED_HOSTS = ['connectbill.herokuapp.com']
 
 
 # Application definition
@@ -50,7 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-#   'django.contrib.staticfiles',
+    'django.contrib.staticfiles',
     
     'portfolio',
 # portfolio Application connected
@@ -198,8 +199,8 @@ REST_FRAMEWORK = {
 }
 AUTH_USER_MODEL = 'users.User'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # AWS_S3_SECURE_URLS = False       # use http instead of https
@@ -255,20 +256,25 @@ SIMPLE_JWT = {
   'AUTH_COOKIE_SAMESITE': 'Lax',  # Whether to set the flag restricting cookie leaks on cross-site requests. This can be 'Lax', 'Strict', or None to disable the flag.
 }
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_S3_SECURE_URLS = False       # use http instead of https
-AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-from boto.s3.connection import S3Connection
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
-# s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
+# DEFAULT_FILE_STORAGE = 'reborn.storages.MediaStorage'
+# STATICFILES_STORAGE = 'reborn.storages.StaticStorage'
+
+# MEDIAFILES_LOCATION = 'media'
+# STATICFILES_LOCATION = 'static'
+
+# AWS_ACCESS_KEY_ID = 'AKIAZQN3T2NAFIHQHQQO'
+# AWS_SECRET_ACCESS_KEY = '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'
+# AWS_STORAGE_BUCKET_NAME = 'bucketforconnectbill'
 
 
-AWS_S3_REGION_NAME = "ap-northeast-2"
-
-AWS_S3_SIGNATURE_VERSION = "s3v4"
-
-SITE_ID=1
 # env= environ.Env(DEBUG=(bool, True))
 # environ.Env.read_env(
 #     env_file=os.path.join(BASE_DIR, '.env')
