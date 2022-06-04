@@ -1,11 +1,8 @@
-from tkinter import EW
-from unittest import result
 from django.contrib.auth import get_user_model
 from rest_framework import viewsets,status
 from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
-from django.core.exceptions import ImproperlyConfigured
 
 from client_commission.models import Commission
 from client_commission.models import RequestedDesigner
@@ -22,7 +19,6 @@ from django.core.files.images import ImageFile
 from PIL import Image
 from PIL import Image
 import numpy as np
-import argparse
 import imutils
 from imutils import paths
 import cv2
