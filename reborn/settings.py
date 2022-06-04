@@ -257,7 +257,8 @@ AWS_STORAGE_BUCKET_NAME = 'bucketforconnectbill'
 # STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
-STATIC_URL = 'http://bucketforconnectbill.s3.amazonaws.com/'
+STATIC_URL = 'https://bucketforconnectbill.s3.ap-northeast-2.amazonaws.com/'
+
 # ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
 
