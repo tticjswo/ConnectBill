@@ -14,11 +14,11 @@ def get_and_authenticate_user(username, password):
     return user
 
 
-def create_designer_account(username , email, password,password2 ,skills , phone,description,average_stars):
+def create_designer_account(username , email, password,password2 ,skills , phone,description):
     if password != password2 :
         raise serializers.ValidationError("password does not match")
     user = Designer.objects.create_user(
-        username = username ,email=email,profile_image= default_profile_image, password=password,  skills = skills, phone = phone, description=description,is_client=False, average_stars = average_stars)
+        username = username ,email=email,profile_image= default_profile_image, password=password,  skills = skills, phone = phone, description=description,is_client=False, average_stars = None)
     return user
 
 def create_client_account(username , email, password,password2, company_name , phone,description):
