@@ -21,7 +21,7 @@ from PIL import Image
 import numpy as np
 import imutils
 from imutils import paths
-import cv2
+from cv2 import cv2
 import math
 import os
 import shutil
