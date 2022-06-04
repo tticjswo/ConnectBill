@@ -43,12 +43,13 @@ ALLOWED_HOSTS = ['connectbill.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-#     'django.contrib.staticfiles',
+#   'django.contrib.staticfiles',
     
     'portfolio',
 # portfolio Application connected
@@ -61,10 +62,10 @@ INSTALLED_APPS = [
     'Mypage',
 # Mypage App is connected    
 
-#     'django_crontab',
+#   'django_crontab',
     'rest_framework.authtoken',
     'rest_framework',
-    'corsheaders',
+    
 
 ]
 
@@ -80,20 +81,17 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
-
-ALLOWED_HOSTS=['https://connectbill-frontend-soongsil.vercel.app']
-CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = (
-      'https://connectbill-frontend-soongsil.vercel.app'
-)
-
+CORS_ORIGIN_WHITELIST = [
+    'http://127.0.0.1:3000' ,'http://localhost:3000',
+    'http://127.0.0.1:8000' ,'http://localhost:8000',
+    'https://connectbill-frontend-soongsil.vercel.app',
+]
 CORS_ALLOW_CREDENTIALS = True
 
 
-CORS_ALLOWED_ORIGINS = [
-    'https://connectbill-frontend-soongsil.vercel.app',
-    'https://connectbill.herokuapp.com',
-]
+# CORS_ALLOWED_ORIGINS = [
+#     'https://connectbill-frontend-soongsil.vercel.app',
+# ]
 
 
 ROOT_URLCONF = 'reborn.urls'
