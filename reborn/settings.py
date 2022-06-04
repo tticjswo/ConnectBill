@@ -259,13 +259,11 @@ AWS_S3_SECURE_URLS = False       # use http instead of https
 AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
 
 env= environ.Env()
-environ.Env.read_env()
+environ.Env.read_env(env_file='.env')
 
-ACCESS_KEY = env('ACCESS_KEY')
-SECRET_ACCESS_KEY = env('SECRET_ACCESS_KEY')
 
-AWS_S3_ACCESS_KEY_ID = ACCESS_KEY
-AWS_S3_SECRET_ACCESS_KEY = SECRET_ACCESS_KEY
+AWS_S3_ACCESS_KEY_ID =env('ACCESS_KEY')
+AWS_S3_SECRET_ACCESS_KEY =  env('SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'bucketforconnectbill'
 
 
