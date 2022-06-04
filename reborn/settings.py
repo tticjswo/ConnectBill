@@ -83,25 +83,38 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
+
+ALLOWED_HOSTS=['*']
+CORS_ORIGIN_ALLOW_ALL = True
+
+# CORS_ALLOW_CREDENTIALS = True
+
+
+# CORS_ALLOWED_ORIGINS = [
+#     'https://connectbill-frontend-soongsil.vercel.app',
+#     'https://connectbill.herokuapp.com',
+# ]
+
+
 ROOT_URLCONF = 'reborn.urls'
 
 TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            #BASE_DIR / 'templates',
-            os.path.join(BASE_PARENT_DIR,'frontend/build'),  
-        ],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
+#     {
+#         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+#         'DIRS': [
+#             #BASE_DIR / 'templates',
+#             os.path.join(BASE_PARENT_DIR,'frontend/build'),  
+#         ],
+#         'APP_DIRS': True,
+#         'OPTIONS': {
+#             'context_processors': [
+#                 'django.template.context_processors.debug',
+#                 'django.template.context_processors.request',
+#                 'django.contrib.auth.context_processors.auth',
+#                 'django.contrib.messages.context_processors.messages',
+#             ],
+#         },
+#     },
 ]
 
 WSGI_APPLICATION = 'reborn.wsgi.application'
@@ -167,12 +180,6 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOWED_ORIGINS = [
-    'https://connectbill-frontend-soongsil.vercel.app',
-    'https://connectbill.herokuapp.com',
-]
-
-# CORS_ALLOW_CREDENTIALS = True
 
 
 REST_FRAMEWORK = {
