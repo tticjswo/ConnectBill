@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate
 from rest_framework import serializers
 from .models import Designer,Client
 
-default_profile_image =  's3://bucketforconnectbill/profile_image/'
+default_profile_image =  'bucketforconnectbill/profile_image/'
 
 def get_and_authenticate_user(username, password):
     user = authenticate(username=username, password=password)

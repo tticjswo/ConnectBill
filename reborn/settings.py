@@ -16,7 +16,8 @@ import dj_database_url
 import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 # BASE_DIR = Path(__file__).resolve().parent.parent
 # BASE_PARENT_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -258,12 +259,15 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_S3_SECURE_URLS = False       # use http instead of https
 AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
 
-env= environ.Env()
-environ.Env.read_env(env_file=os.path.join(BASE_DIR, '.env'))
+env= environ.Env(DEBUG=(bool, True))
+environ.Env.read_env(
+    env_file=os.path.join(BASE_DIR, '.env')
+    )
 
-AWS_S3_ACCESS_KEY_ID = str(env('ACCESS_KEY'))
-AWS_S3_SECRET_ACCESS_KEY =  str(env('SECRET_ACCESS_KEY'))
+AWS_S3_ACCESS_KEY_ID = env('ACCESS_KEY')
+AWS_S3_SECRET_ACCESS_KEY =  env('SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'bucketforconnectbill'
+
 
 
 # Static files (CSS, JavaScript, Images)
