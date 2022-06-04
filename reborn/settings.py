@@ -172,7 +172,7 @@ CORS_ALLOWED_ORIGINS = [
     'https://connectbill.herokuapp.com',
 ]
 
-CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOW_CREDENTIALS = True
 
 
 REST_FRAMEWORK = {
