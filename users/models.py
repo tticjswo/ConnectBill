@@ -30,8 +30,7 @@ class Client(User,models.Model) :
 
 class Designer(User,models.Model) :
     phone = models.CharField(max_length=100, blank=True)
-    average_stars = models.IntegerField(default=0, blank=True)
-    stars = models.FloatField(null=True,default=None,blank=True)
+    average_stars = models.FloatField(null=True,default=None, blank=True)
     skills = models.CharField(max_length=100,blank=True)
     description = models.TextField(null=True, blank=True)
 
