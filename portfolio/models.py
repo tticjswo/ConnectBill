@@ -32,7 +32,7 @@ def path_and_rename_sumnail(instance, filename):
 #     return os.path.join(upload_to, filename)
 
 class DesignerPopol(models.Model) :
-    designer = models.OneToOneField(Designer, on_delete=models.CASCADE)
+    designer = models.OneToOneField(Designer, on_delete=models.CASCADE,null=True)
     description = models.TextField(max_length=300 , blank = True) #About me
 
     class Meta :
