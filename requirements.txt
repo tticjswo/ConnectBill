@@ -49,6 +49,7 @@ click==8.1.2
 clikit==0.6.2
 cloudpickle @ file:///tmp/build/80754af9/cloudpickle_1632508026186/work
 clyent==1.2.2
+cmake==3.22.4
 colorama @ file:///tmp/build/80754af9/colorama_1607707115595/work
 colorcet @ file:///tmp/build/80754af9/colorcet_1611168489822/work
 comtypes==1.1.10
@@ -78,8 +79,12 @@ defusedxml @ file:///tmp/build/80754af9/defusedxml_1615228127516/work
 diff-match-patch @ file:///Users/ktietz/demo/mc3/conda-bld/diff-match-patch_1630511840874/work
 distlib==0.3.4
 distributed @ file:///opt/conda/conda-bld/distributed_1647271944416/work
+dj-database-url==0.5.0
 Django==4.0.4
+django-ckeditor==6.4.1
 django-cors-headers==3.11.0
+django-crontab==0.7.1
+django-js-asset==2.0.0
 django-storages==1.12.3
 djangorestframework==3.13.1
 djangorestframework-simplejwt==5.1.0
@@ -111,6 +116,7 @@ google-resumable-media @ file:///tmp/build/80754af9/google-resumable-media_16243
 googleapis-common-protos @ file:///C:/ci/googleapis-common-protos-feedstock_1617957814607/work
 greenlet @ file:///C:/ci/greenlet_1628888275363/work
 grpcio==1.44.0
+gunicorn==20.1.0
 h5py @ file:///C:/ci/h5py_1637120894255/work
 HeapDict @ file:///Users/ktietz/demo/mc3/conda-bld/heapdict_1630598515714/work
 holoviews @ file:///opt/conda/conda-bld/holoviews_1645454331194/work
@@ -236,6 +242,7 @@ prompt-toolkit==3.0.29
 Protego @ file:///tmp/build/80754af9/protego_1598657180827/work
 protobuf==3.20.0
 psutil==5.9.0
+psycopg2-binary==2.9.3
 ptyprocess==0.7.0
 pure-eval @ file:///opt/conda/conda-bld/pure_eval_1646925070566/work
 py @ file:///opt/conda/conda-bld/py_1644396412707/work
@@ -381,6 +388,7 @@ wcwidth @ file:///Users/ktietz/demo/mc3/conda-bld/wcwidth_1629357192024/work
 webencodings==0.5.1
 websocket-client @ file:///C:/ci/websocket-client_1614804375980/work
 Werkzeug==2.1.1
+whitenoise==6.1.0
 widgetsnbextension==3.6.0
 win-inet-pton @ file:///C:/ci/win_inet_pton_1605306162074/work
 win-unicode-console==0.5
