@@ -60,12 +60,12 @@ INSTALLED_APPS = [
     'Mypage',
 # Mypage App is connected    
 
-    'django_crontab',
+#     'django_crontab',
     'rest_framework.authtoken',
     'rest_framework',
     'corsheaders',
-    'storages',
-    'ckeditor',
+#     'storages',
+#     'ckeditor',
 
 
 ]
