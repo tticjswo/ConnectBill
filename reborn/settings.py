@@ -48,20 +48,12 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-#   'django.contrib.staticfiles',
-    
     'portfolio',
-# portfolio Application connected
     'users',
-# users app connected
     'userReview',
-# customerReview connected
     'client_commission',
-# client_commission app is connected
     'Mypage',
-# Mypage App is connected    
-
-#   'django_crontab',
+    #'django.contrib.staticfiles',
     'rest_framework.authtoken',
     'rest_framework',
     
