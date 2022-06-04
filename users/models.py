@@ -16,7 +16,7 @@ class User(AbstractUser) :
     profile_image = models.ImageField(null=True)
 
 
-class Client(User) :
+class Client(User,models.Model) :
     company_name=models.CharField(max_length=100)
     phone = models.CharField(max_length=100)
     description =models.TextField(null= True)
@@ -28,11 +28,12 @@ class Client(User) :
     class Meta :
             verbose_name = 'Client'
 
-class Designer(User) :
+class Designer(User,models.Model) :
     phone = models.CharField(max_length=100, blank=True)
+    average_stars = models.IntegerField(default=0, blank=True)
+    stars = models.FloatField(null=True,default=None,blank=True)
     skills = models.CharField(max_length=100,blank=True)
     description = models.TextField(null=True, blank=True)
-    average_stars = models.FloatField(null =True,default=0.0,blank=True)
 
     USERNAME_FIELD: User.username
 
