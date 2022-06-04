@@ -2,8 +2,11 @@ from email.policy import default
 from django.contrib.auth import authenticate
 from rest_framework import serializers
 from .models import Designer,Client
+from reborn.settings import STATIC_URL
 
-default_profile_image =  'https://bucketforconnectbill.s3.ap-northeast-2.amazonaws.com/profile_image/user_default_image.png'
+import os
+
+default_profile_image =  os.path.join(STATIC_URL ,'profile_image/user_default_image.png')
 
 def get_and_authenticate_user(username, password):
     user = authenticate(username=username, password=password)
