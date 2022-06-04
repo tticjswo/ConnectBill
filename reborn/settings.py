@@ -13,7 +13,7 @@ from datetime import timedelta
 from pathlib import Path
 import os
 import dj_database_url
-
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -65,6 +65,7 @@ INSTALLED_APPS = [
 #   'django_crontab',
     'rest_framework.authtoken',
     'rest_framework',
+    'storages',
     
 
 ]
@@ -80,6 +81,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
+
 
 CORS_ORIGIN_WHITELIST = [
     'http://127.0.0.1:3000' ,'http://localhost:3000',
@@ -251,6 +253,20 @@ SIMPLE_JWT = {
   'AUTH_COOKIE_PATH': '/',        # The path of the auth cookie.
   'AUTH_COOKIE_SAMESITE': 'Lax',  # Whether to set the flag restricting cookie leaks on cross-site requests. This can be 'Lax', 'Strict', or None to disable the flag.
 }
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_S3_SECURE_URLS = False       # use http instead of https
+AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
+
+env= environ.Env()
+environ.Env.read_env()
+
+ACCESS_KEY = env('ACCESS_KEY')
+SECRET_ACCESS_KEY = env('SECRET_ACCESS_KEY')
+
+AWS_S3_ACCESS_KEY_ID = ACCESS_KEY
+AWS_S3_SECRET_ACCESS_KEY = SECRET_ACCESS_KEY
+AWS_STORAGE_BUCKET_NAME = 'bucketforconnectbill'
 
 
 
