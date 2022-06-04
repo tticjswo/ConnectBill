@@ -37,7 +37,7 @@ DEBUG = bool(os.environ.get('DJANGO_DEBUG', False))
 # # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 
-ALLOWED_HOSTS = ['.herokuapp.com']
+ALLOWED_HOSTS = ['connectbill.herokuapp.com']
 
 
 # Application definition
@@ -65,9 +65,6 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework',
     'corsheaders',
-#     'storages',
-#     'ckeditor',
-
 
 ]
 
@@ -84,16 +81,19 @@ MIDDLEWARE = [
 ]
 
 
-ALLOWED_HOSTS=['*']
-CORS_ORIGIN_ALLOW_ALL = True
+ALLOWED_HOSTS=['https://connectbill-frontend-soongsil.vercel.app']
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
+      'https://connectbill-frontend-soongsil.vercel.app'
+)
 
-# CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_CREDENTIALS = True
 
 
-# CORS_ALLOWED_ORIGINS = [
-#     'https://connectbill-frontend-soongsil.vercel.app',
-#     'https://connectbill.herokuapp.com',
-# ]
+CORS_ALLOWED_ORIGINS = [
+    'https://connectbill-frontend-soongsil.vercel.app',
+    'https://connectbill.herokuapp.com',
+]
 
 
 ROOT_URLCONF = 'reborn.urls'
