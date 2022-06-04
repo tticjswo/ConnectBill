@@ -1,9 +1,3 @@
-from dataclasses import field
-from msilib.schema import Class
-from pydoc import describe
-from django.forms import ValidationError
-from nbformat import read
-from numpy import average, source
 from rest_framework import serializers
 from users.models import User,Designer,Client
 from userReview.models import customerReview
