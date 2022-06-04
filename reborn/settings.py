@@ -16,7 +16,7 @@ import dj_database_url
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = 'https://connectbill.herokuapp.com/'
+os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # BASE_DIR = Path(__file__).resolve().parent.parent
 # BASE_PARENT_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -124,7 +124,7 @@ WSGI_APPLICATION = 'reborn.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME':  'db.sqlite3',
     }
 }
 db_from_env = dj_database_url.config(conn_max_age=500)
