@@ -259,6 +259,16 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_S3_SECURE_URLS = False       # use http instead of https
 AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
 
+from boto.s3.connection import S3Connection
+
+# s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
+
+
+AWS_S3_REGION_NAME = "ap-northeast-2"
+
+AWS_S3_SIGNATURE_VERSION = "s3v4"
+
+SITE_ID=1
 # env= environ.Env(DEBUG=(bool, True))
 # environ.Env.read_env(
 #     env_file=os.path.join(BASE_DIR, '.env')
