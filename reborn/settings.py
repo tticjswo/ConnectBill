@@ -16,8 +16,9 @@ import dj_database_url
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-BASE_PARENT_DIR = Path(__file__).resolve().parent.parent.parent
+BASE_DIR = 'https://connectbill.herokuapp.com/'
+# BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_PARENT_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -166,11 +167,11 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ORIGIN_WHITELIST = [
-    'http://127.0.0.1:3000' ,'http://localhost:3000',
-    'http://127.0.0.1:8000' ,'http://localhost:8000',
-    'https://connectbill-frontend-soongsil.vercel.app'
+CORS_ALLOWED_ORIGINS = [
+    'https://connectbill-frontend-soongsil.vercel.app',
+    'https://connectbill.herokuapp.com',
 ]
+
 CORS_ALLOW_CREDENTIALS = True
 
 
