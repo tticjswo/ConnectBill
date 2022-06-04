@@ -1,1 +1,1 @@
-web: gunicorn ConnectBill.wsgi --log-file -
+web: gunicorn reborn.wsgi --log-file -
