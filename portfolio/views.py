@@ -138,19 +138,20 @@ def image_handler(request):
     filename = request.FILES['files']
     user = User.objects.get(id = request.user.id)  
     img = (ContentFile(image.read()))
+    os.mkdir(MEDIA_ROOT +'/project_image/'+str(user.username))
     path = default_storage.save('project_image/'+str(user.username)+'/'+ str(uuid4().hex)+'.jpg', img)
-    #path1 = os.path.join(MEDIA_ROOT,path)
-    print("path : " + str(path) )
+    path1 = os.path.join(MEDIA_ROOT,path)
+    print("path1 : " + str(path1) )
 
     # img_array = np.fromfile(path1, np.uint8)
     # img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
 
-    img = cv2.imread(path)
+    img = cv2.imread(path1)
     img = cv2.resize(img, dsize=(500, 500), fx=0.3, fy=0.7, interpolation=cv2.INTER_AREA)# 
     
-    cv2.imwrite(path,img)
+    cv2.imwrite(path1,img)
 
-    return Response({'file_path' :path})
+    return Response({'file_path' :path1})
 
 
 
