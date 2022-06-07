@@ -183,8 +183,8 @@ REST_FRAMEWORK = {
 }
 AUTH_USER_MODEL = 'users.User'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 ACCOUNT_LOGOUT_ON_GET = True
 
@@ -245,10 +245,10 @@ SIMPLE_JWT = {
 
 # The absolute path to the directory where collectstatic will collect static files for deployment.
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # # The URL to use when referring to static files (where they will be served from)
-STATIC_URL = '/static/'
-
+STATIC_URL  = '/static/'
+MEDIA_URL = '/static/'
 # extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
      os.path.join(BASE_DIR, 'static'),  
