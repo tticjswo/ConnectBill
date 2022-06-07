@@ -28,7 +28,7 @@ import shutil
 from reborn import settings
 from uuid import uuid4
 
-MEDIA_ROOT = settings.STATIC_URL
+MEDIA_ROOT = settings.MEDIA_ROOT
 
 datetime_format = "%Y-%m-%d"
 User = get_user_model()
@@ -47,16 +47,16 @@ def create_commission(request):
         else :
             images = []
             images = request.data.getlist('images')
-            upload_to = '/tmp'
+            upload_to = 'tmp'
 
             # os.mkdir(MEDIA_ROOT +'/temp'+str(request.user.id))
             for i in images :
                 filename_and_path= os.path.join(upload_to+str(request.user.id)+'/'+ str(i))
                 path = default_storage.save(filename_and_path, ContentFile(i.read()))   
 
-            
+            tmp_dir = os.path.join(upload_to+str(request.user.id))
             print("[INFO] loading images...")
-            imagePaths = sorted(list(paths.list_images(os.path.join(MEDIA_ROOT +upload_to+str(request.user.id)))))
+            imagePaths = sorted(list(paths.list_images(os.path.join(MEDIA_ROOT,tmp_dir ))))
             raw_images = []
 
             for imagePath in imagePaths :
@@ -66,11 +66,13 @@ def create_commission(request):
                 
             print("[INFO] switching images...")
             stitcher = cv2.createStitcher() if imutils.is_cv3() else cv2.Stitcher_create()
-            (tmpstatus, path) = stitcher.stitch(raw_images)
+            (tmpstatus, image) = stitcher.stitch(raw_images)
             if tmpstatus == 0:
-                path = path+'.jpg'
-                # cv2.imwrite(os.path.join(MEDIA_ROOT,'commission_image/'+str(uuid4().hex)+'.jpg'),image)
-                # cv2.waitKey(0)
+                # path = image +'.jpg'
+                cv2.imwrite(os.path.join(MEDIA_ROOT,'commission_image/'+str(uuid4().hex)+'.jpg'),image)
+                cv2.waitKey(0)
+
+                path = os.path.join('static/','commission_image/'+str(uuid4().hex)+'.jpg')
                 # write the output stitched image to disk
 
                 # display the output stitched image to our screen
