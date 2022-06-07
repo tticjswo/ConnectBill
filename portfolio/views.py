@@ -154,7 +154,7 @@ def image_handler(request):
     
     cv2.imwrite(os.path.join(MEDIA_ROOT,path),img)
 
-    return Response({'file_path' : os.path.join(settings.STATIC_URL,path)})
+    return Response({'file_path' : os.path.join('static/',path)})
 
 
 
