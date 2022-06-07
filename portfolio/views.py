@@ -134,31 +134,27 @@ def project_view_detail(request,pk):
 @permission_classes([IsAuthenticated, ])
 def image_handler(request):
     #print(request.data['files'])
-    image = request.FILES['files'] # or self.files['image'] in your form
-    filename = request.FILES['files']
+
+    image = request.FILES['files'][0] # or self.files['image'] in your form
+    upload_to = 'project_image/'+str(image) +'/'
+
     user = User.objects.get(id = request.user.id)  
     img = (ContentFile(image.read()))
-    os.mkdir(MEDIA_ROOT +'project_image')
-    os.mkdir(MEDIA_ROOT +'project_image/'+str(user.username))
-    filename_and_path= MEDIA_ROOT +'project_image/'+str(user.username)+ '/'+ str(uuid4().hex)+'.jpg'
-    default_storage.save( filename_and_path, img)
-    print("path1 : " + str(filename_and_path) )
+    # os.mkdir(MEDIA_ROOT +'project_image/'+str(user.username))
+    # filename_and_path= MEDIA_ROOT +'project_image/'+str(user.username)+ '/'+ str(uuid4().hex)+'.jpg'
+    path = os.path.join(upload_to,str(uuid4().hex)+'.jpg')
+    default_storage.save(path , img)
+    print("path : " + path )
 
     # img_array = np.fromfile(path1, np.uint8)
     # img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
 
-    img = cv2.imread(filename_and_path)
+    img = cv2.imread(path)
     img = cv2.resize(img, dsize=(500, 500), fx=0.3, fy=0.7, interpolation=cv2.INTER_AREA)# 
     
-    cv2.imwrite(filename_and_path,img)
+    cv2.imwrite(path,img)
 
-    return Response({'file_path' :filename_and_path})
-
-
-    os.mkdir(MEDIA_ROOT +'/temp'+str(request.user.id))
-    for i in images :
-        filename_and_path= MEDIA_ROOT +'/temp'+str(request.user.id)+'/'+ str(i)
-        path = default_storage.save(filename_and_path, ContentFile(i.read()))   
+    return Response({'file_path' :path})
 
 
 
