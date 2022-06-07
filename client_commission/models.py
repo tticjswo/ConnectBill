@@ -21,8 +21,10 @@ def path_and_rename_sumnail(instance, filename):
 
 def path_and_rename_sumnail_panorama_image(instance, filename):
     ext = filename.split('.')[-1]
+    print(instance)
     # get filename
     if instance.pk:
+       
         return instance
     else:
         upload_to = 'client_commission/commission_image/panorama_image'
