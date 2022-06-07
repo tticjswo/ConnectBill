@@ -135,7 +135,7 @@ def project_view_detail(request,pk):
 def image_handler(request):
     #print(request.data['files'])
 
-    image = request.FILES['files'][0] # or self.files['image'] in your form
+    image = request.FILES['files']# or self.files['image'] in your form
     upload_to = 'project_image/'+str(image) +'/'
 
     user = User.objects.get(id = request.user.id)  
