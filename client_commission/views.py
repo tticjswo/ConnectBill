@@ -40,7 +40,7 @@ def create_commission(request):
     if request.user.is_client == True:
         if request.data['is_panorama'] == 'true' :
             path = request.data.getlist('images')[0]
-            # print(image)
+            print(path)
         else :
             images = []
             images = request.data.getlist('images')
