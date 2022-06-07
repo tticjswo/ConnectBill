@@ -144,8 +144,9 @@ def image_handler(request):
     # os.mkdir(MEDIA_ROOT +'project_image/'+str(user.username))
     # filename_and_path= MEDIA_ROOT +'project_image/'+str(user.username)+ '/'+ str(uuid4().hex)+'.jpg'
     path = os.path.join(upload_to,str(uuid4().hex)+'.jpg')
-    default_storage.save(path , img)
-    print("path : " + path )
+    path1 = default_storage.save(path , img)
+    print(path1)
+    print("path : " + os.path.join(MEDIA_ROOT,path) )
 
     # img_array = np.fromfile(path1, np.uint8)
     # img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
