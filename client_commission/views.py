@@ -102,8 +102,9 @@ def create_commission(request):
                 deadline = request.data['deadline'],
                 description=request.data['description'],
             )
-            newCommission.commission_image.save('output.jpg',content)
             newCommission.save()
+            newCommission.commission_image.save('output.jpg',content)
+            
             # shutil.rmtree(MEDIA_ROOT +'/temp'+str(request.user.id))
             return Response({'message' : "Success"}, status = status.HTTP_200_OK)
 
