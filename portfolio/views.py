@@ -24,8 +24,7 @@ from django.core.files.base import ContentFile
 import numpy as np
 from reborn import settings
 
-MEDIA_ROOT = settings.STATIC_URL
-
+MEDIA_ROOT = settings.STATIC_ROOT
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
@@ -139,7 +138,7 @@ def image_handler(request):
 
     user = User.objects.get(id = request.user.id)  
     upload_to = 'project_image/'+str(request.user.username)
-
+    print(upload_to)
     img = (ContentFile(image.read()))
     # os.mkdir(MEDIA_ROOT +'project_image/'+str(user.username))
     # filename_and_path= MEDIA_ROOT +'project_image/'+str(user.username)+ '/'+ str(uuid4().hex)+'.jpg'

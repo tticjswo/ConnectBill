@@ -26,11 +26,14 @@ import math
 import os
 import shutil
 from reborn import settings
+from uuid import uuid4
 
 MEDIA_ROOT = settings.STATIC_URL
 
 datetime_format = "%Y-%m-%d"
 User = get_user_model()
+
+
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated, ])
@@ -63,8 +66,8 @@ def create_commission(request):
             stitcher = cv2.createStitcher() if imutils.is_cv3() else cv2.Stitcher_create()
             (tmpstatus, image) = stitcher.stitch(raw_images)
             if tmpstatus == 0:
-                path = '/client_committion/committion_image/image.jpg'
-                cv2.imwrite(MEDIA_ROOT + path,image)
+                path = str(uuid4().hex)+'.jpg'
+                cv2.imwrite(path,image)
                 cv2.waitKey(0)
                 # write the output stitched image to disk
 
