@@ -54,9 +54,9 @@ def create_commission(request):
                 filename_and_path= os.path.join(upload_to+str(request.user.id)+'/'+ str(i))
                 path = default_storage.save(filename_and_path, ContentFile(i.read()))   
 
-            tmp_dir = os.path.join(upload_to+str(request.user.id))
+            
             print("[INFO] loading images...")
-            imagePaths = sorted(list(paths.list_images(os.path.join(MEDIA_ROOT,tmp_dir ))))
+            imagePaths = sorted(list(paths.list_images(os.path.join(MEDIA_ROOT +upload_to+str(request.user.id)))))
             raw_images = []
 
             for imagePath in imagePaths :
@@ -68,11 +68,9 @@ def create_commission(request):
             stitcher = cv2.createStitcher() if imutils.is_cv3() else cv2.Stitcher_create()
             (tmpstatus, image) = stitcher.stitch(raw_images)
             if tmpstatus == 0:
-                # path = image +'.jpg'
-                # cv2.imwrite(os.path.join(MEDIA_ROOT,'commission_image/'+str(uuid4().hex)+'.jpg'),image)
-                # cv2.waitKey(0)
-                content = ContentFile(image.tobytes())
-                # path = 'commission_image/'+str(uuid4().hex)+'.jpg'
+                path = str(uuid4().hex)+'.jpg'
+                cv2.imwrite(os.path.join(MEDIA_ROOT,'commission_image/'+path),image)
+                cv2.waitKey(0)
                 # write the output stitched image to disk
 
                 # display the output stitched image to our screen
@@ -88,9 +86,11 @@ def create_commission(request):
                 else:
                     print("[INFO] image stitching failed (3: STITCHER_ERR_CAMERA_PARAMETERS_ADJUSTMENT_FAIL)")
                     raise Exception("[INFO] image stitching failed (3: STITCHER_ERR_CAMERA_PARAMETERS_ADJUSTMENT_FAIL)")
-            
+            # shutil.rmtree(MEDIA_ROOT +'/temp'+str(request.user.id))
             serializer = CommissionSerializer(data=request.data, many=False)
             serializer.is_valid(raise_exception=True)
+            
+            # file = ContentFile(image)
 
             tmpClient = Client.objects.get(id = request.user.id)
             newCommission = Commission(
@@ -99,17 +99,15 @@ def create_commission(request):
                 small_image = request.data['small_image'],
                 budget = request.data['budget'],
                 finish_date = int(request.data['finish_date']) ,
-                commission_image=('output.jpg',content),
+                commission_image = 'commission_image/'+path,
                 deadline = request.data['deadline'],
                 description=request.data['description'],
             )
             newCommission.save()
-            
-            # shutil.rmtree(MEDIA_ROOT +'/temp'+str(request.user.id))
+            serializer = CommissionSerializer(data=request.data, many=False)
+            serializer.is_valid(raise_exception=True)
             return Response({'message' : "Success"}, status = status.HTTP_200_OK)
 
-        serializer = CommissionSerializer(data=request.data, many=False)
-        serializer.is_valid(raise_exception=True)
         
         # file = ContentFile(image)
 
