@@ -138,9 +138,9 @@ def image_handler(request):
     filename = request.FILES['files']
     user = User.objects.get(id = request.user.id)  
     img = (ContentFile(image.read()))
-    os.mkdir(MEDIA_ROOT +'/project_image')
-    os.mkdir(MEDIA_ROOT +'/project_image/'+str(user.username))
-    filename_and_path= MEDIA_ROOT +'/project_image/'+str(user.username)+ '/'+ str(uuid4().hex)+'.jpg'
+    os.mkdir(MEDIA_ROOT +'project_image')
+    os.mkdir(MEDIA_ROOT +'project_image/'+str(user.username))
+    filename_and_path= MEDIA_ROOT +'project_image/'+str(user.username)+ '/'+ str(uuid4().hex)+'.jpg'
     default_storage.save( filename_and_path, img)
     print("path1 : " + str(filename_and_path) )
 
