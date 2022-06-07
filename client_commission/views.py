@@ -69,10 +69,10 @@ def create_commission(request):
             (tmpstatus, image) = stitcher.stitch(raw_images)
             if tmpstatus == 0:
                 # path = image +'.jpg'
-                cv2.imwrite(os.path.join(MEDIA_ROOT,'commission_image/'+str(uuid4().hex)+'.jpg'),image)
-                cv2.waitKey(0)
-
-                path = 'commission_image/'+str(uuid4().hex)+'.jpg'
+                # cv2.imwrite(os.path.join(MEDIA_ROOT,'commission_image/'+str(uuid4().hex)+'.jpg'),image)
+                # cv2.waitKey(0)
+                content = ContentFile(image.tobytes())
+                # path = 'commission_image/'+str(uuid4().hex)+'.jpg'
                 # write the output stitched image to disk
 
                 # display the output stitched image to our screen
@@ -88,7 +88,21 @@ def create_commission(request):
                 else:
                     print("[INFO] image stitching failed (3: STITCHER_ERR_CAMERA_PARAMETERS_ADJUSTMENT_FAIL)")
                     raise Exception("[INFO] image stitching failed (3: STITCHER_ERR_CAMERA_PARAMETERS_ADJUSTMENT_FAIL)")
+            
+            tmpClient = Client.objects.get(id = request.user.id)
+            newCommission = Commission(
+                client = tmpClient,
+                title=serializer.validated_data['title'],
+                small_image = request.data['small_image'],
+                budget = request.data['budget'],
+                finish_date = int(request.data['finish_date']) ,
+                deadline = request.data['deadline'],
+                description=request.data['description'],
+            )
+            newCommission.commission_image.save('output.jpg',content)
+            newCommission.save()
             # shutil.rmtree(MEDIA_ROOT +'/temp'+str(request.user.id))
+            return Response({'message' : "Success"}, status = status.HTTP_200_OK)
 
         serializer = CommissionSerializer(data=request.data, many=False)
         serializer.is_valid(raise_exception=True)
