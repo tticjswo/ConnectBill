@@ -144,14 +144,15 @@ def image_handler(request):
     # filename_and_path= MEDIA_ROOT +'project_image/'+str(user.username)+ '/'+ str(uuid4().hex)+'.jpg'
     path = os.path.join(upload_to,str(uuid4().hex)+'.jpg')
     default_storage.save(path , img)
+    print("path : " + os.path.join(MEDIA_ROOT,path) )
 
     # img_array = np.fromfile(path1, np.uint8)
     # img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
 
-    img = cv2.imread(os.path.join(settings.STATIC_URL,path))
+    img = cv2.imread(os.path.join(MEDIA_ROOT,path))
     img = cv2.resize(img, dsize=(500, 500), fx=0.3, fy=0.7, interpolation=cv2.INTER_AREA)# 
     
-    cv2.imwrite(os.path.join(settings.STATIC_ROOT,path),img)
+    cv2.imwrite(os.path.join(MEDIA_ROOT,path),img)
 
     return Response({'file_path' : os.path.join(settings.STATIC_URL,path)})
 
