@@ -72,7 +72,7 @@ def create_commission(request):
                 cv2.imwrite(os.path.join(MEDIA_ROOT,'commission_image/'+str(uuid4().hex)+'.jpg'),image)
                 cv2.waitKey(0)
 
-                path = os.path.join('static/','commission_image/'+str(uuid4().hex)+'.jpg')
+                path = 'commission_image/'+str(uuid4().hex)+'.jpg'
                 # write the output stitched image to disk
 
                 # display the output stitched image to our screen
