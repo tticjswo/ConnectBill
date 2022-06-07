@@ -136,9 +136,10 @@ def image_handler(request):
     #print(request.data['files'])
 
     image = request.FILES['files']# or self.files['image'] in your form
-    upload_to = 'project_image/'+str(image) +'/'
 
     user = User.objects.get(id = request.user.id)  
+    upload_to = 'project_image/'+str(request.user.username)
+
     img = (ContentFile(image.read()))
     # os.mkdir(MEDIA_ROOT +'project_image/'+str(user.username))
     # filename_and_path= MEDIA_ROOT +'project_image/'+str(user.username)+ '/'+ str(uuid4().hex)+'.jpg'
