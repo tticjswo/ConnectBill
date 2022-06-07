@@ -89,6 +89,9 @@ def create_commission(request):
                     print("[INFO] image stitching failed (3: STITCHER_ERR_CAMERA_PARAMETERS_ADJUSTMENT_FAIL)")
                     raise Exception("[INFO] image stitching failed (3: STITCHER_ERR_CAMERA_PARAMETERS_ADJUSTMENT_FAIL)")
             
+            serializer = CommissionSerializer(data=request.data, many=False)
+            serializer.is_valid(raise_exception=True)
+
             tmpClient = Client.objects.get(id = request.user.id)
             newCommission = Commission(
                 client = tmpClient,
