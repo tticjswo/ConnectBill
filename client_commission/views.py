@@ -66,11 +66,11 @@ def create_commission(request):
                 
             print("[INFO] switching images...")
             stitcher = cv2.createStitcher() if imutils.is_cv3() else cv2.Stitcher_create()
-            (tmpstatus, image) = stitcher.stitch(raw_images)
+            (tmpstatus, path) = stitcher.stitch(raw_images)
             if tmpstatus == 0:
-                path = str(uuid4().hex)+'.jpg'
-                cv2.imwrite(os.path.join(MEDIA_ROOT,'commission_image/'+str(uuid4().hex)+'.jpg'),image)
-                cv2.waitKey(0)
+                path = path+'.jpg'
+                # cv2.imwrite(os.path.join(MEDIA_ROOT,'commission_image/'+str(uuid4().hex)+'.jpg'),image)
+                # cv2.waitKey(0)
                 # write the output stitched image to disk
 
                 # display the output stitched image to our screen
@@ -100,7 +100,7 @@ def create_commission(request):
             small_image = request.data['small_image'],
             budget = request.data['budget'],
             finish_date = int(request.data['finish_date']) ,
-            commission_image = os.path.join('static/','commission_image/'+str(uuid4().hex)+'.jpg'),
+            commission_image = path,
             deadline = request.data['deadline'],
             description=request.data['description'],
         )
