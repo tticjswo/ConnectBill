@@ -20,16 +20,16 @@ def path_and_rename_sumnail(instance, filename):
     return os.path.join(upload_to, filename)
 
 def path_and_rename_sumnail_panorama_image(instance, filename):
-    upload_to = 'client_commission/commission_image/panorama_image'
     ext = filename.split('.')[-1]
     # get filename
     if instance.pk:
-        filename = '{}.{}'.format(instance.pk, ext)
+        return instance
     else:
+        upload_to = 'client_commission/commission_image/panorama_image'
         # set filename as random string
         filename = '{}.{}'.format(uuid4().hex, ext)
     # return the whole path to the file
-    return os.path.join(upload_to, filename)
+        return os.path.join(upload_to, filename)
 
 class CommissionStatus(models.IntegerChoices):
     not_started  = 0
