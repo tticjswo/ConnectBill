@@ -140,7 +140,8 @@ def image_handler(request):
     img = (ContentFile(image.read()))
     path = default_storage.save('project_image/'+str(user.username)+'/'+ str(uuid4().hex)+'.jpg', img)
     path1 = os.path.join(MEDIA_ROOT,path)
-    
+    print("path : " + str(path) + ", path1 : " + str(path1))
+
     # img_array = np.fromfile(path1, np.uint8)
     # img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
 
